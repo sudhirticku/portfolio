@@ -1,30 +1,25 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import Nav from '@/components/Nav'
-import './globals.css'
+import type { Metadata } from "next";
+import { Instrument_Sans } from "next/font/google";
+import { site } from "@/content/site";
+import "./globals.css";
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
-const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
+const font = Instrument_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: 'Sudhir — AI Workflows for Recruitment',
-  description:
-    '7+ years in talent acquisition — now building AI-powered workflows that take the busywork out of hiring.',
-  openGraph: {
-    title: 'Sudhir — AI Workflows for Recruitment',
-    description:
-      '7+ years in talent acquisition — now building AI-powered workflows that take the busywork out of hiring.',
-    type: 'website',
-  },
-}
+  title: site.title,
+  description: site.description,
+  openGraph: { title: site.title, description: site.description, type: "website" },
+  twitter: { card: "summary", title: site.title, description: site.description },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}>
-        <Nav />
-        <div className="pt-16">{children}</div>
-      </body>
+    <html lang="en" className={font.className}>
+      <body>{children}</body>
     </html>
-  )
+  );
 }
